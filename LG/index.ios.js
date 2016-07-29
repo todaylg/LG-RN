@@ -3,51 +3,39 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
+'use strict'
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  View
+  Navigator
 } from 'react-native';
+import HomePage from './jscore/HomePage.js';
 
 class LG extends Component {
+  constructor(props) {
+    super(props);
+  
+    this.state = {};
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
+      <Navigator style = {styles.container}
+        initialRoute={{
+          component: HomePage
+        }}
+        renderScene={(route, navigator) => { // 用来渲染navigator栈顶的route里的component页面
+          // route={component: xxx, name: xxx, ...}， navigator.......route 用来在对应界面获取其他键值
+          return <route.component navigator={navigator} {...route} {...route.passProps}/>// {...route.passProps}即就是把passProps里的键值对全部以给属性赋值的方式展开 如：test={10}
+        }}/>
+    )
   }
 }
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+    flex: 1
+  }
+})
 
 AppRegistry.registerComponent('LG', () => LG);

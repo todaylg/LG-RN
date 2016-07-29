@@ -25,7 +25,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1Q-N6-qTd">
-                    <rect key="frame" x="80" y="220" width="200" height="200"/>
+                    <rect key="frame" x="70" y="220" width="200" height="200"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="180" id="VyH-bM-UtH"/>
                         <constraint firstAttribute="height" constant="180" id="zhj-3V-XoU"/>
