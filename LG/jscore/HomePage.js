@@ -39,15 +39,14 @@ class HomePage extends Component {
         toValue: 1,
         duration: 800
       })
-    ]).start(async() => {
+    ]).start(async() => {//start支持回调 
       this.setState({
-        isPlaying: false
+        isPlaying: false,
+        isLoading: false//还没有读数据这一个步骤
       })
 
       setTimeout(() => this._hideWelcome(), 0)
     })
-
-    setTimeout(() => this._hideWelcome(), 0)
   }
 
   _hideWelcome () {
@@ -61,7 +60,7 @@ class HomePage extends Component {
         toValue: 0,
         duration: 1000
       }).start(() => {
-        this.setState({
+        this.setState({//触发重绘，隐藏开场动画
           welcomeEnd: true
         })
       })
@@ -71,7 +70,7 @@ class HomePage extends Component {
     let content
     if (this.state.isLoading) {
       content = (<View style={{backgroundColor: 'black', flex: 1}}/>)
-    } else {
+    } else {//动画过度以后显示的界面
       content = (<View style={{backgroundColor: 'white', flex: 1}}/>)
     }
 
@@ -84,7 +83,7 @@ class HomePage extends Component {
   }
 
   _welcome () {
-    if (this.state.welcomeEnd) {
+    if (this.state.welcomeEnd) {//显示主页面
       return null
     }
     
