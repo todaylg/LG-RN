@@ -5,12 +5,14 @@ import {
  Animated, 
  Image, 
  TouchableHighlight, 
- Text, 
+ Text,
+ Navigator, 
  StyleSheet 
 } from 'react-native'
+import Login from './Login.js';
+// import Login from '../views/login.js';
 
-
-class HomePage extends Component {
+export default class HomePage extends Component{
   constructor (...args) {
     super(...args)
     this.state = ({
@@ -71,10 +73,19 @@ class HomePage extends Component {
     if (this.state.isLoading) {
       content = (<View style={{backgroundColor: 'black', flex: 1}}/>)
     } else {//动画过度以后显示的界面
-      content = (<View style={{backgroundColor: 'white', flex: 1}}/>)
+      // content = (<View style={{backgroundColor: 'white', flex: 1}}/>)
+      content = (<Navigator style = {styles.container}
+        initialRoute={{//路由初始化配置信息，就是说页面加载时，第一次需要展现什么内容
+          component: Login
+        }}
+        renderScene={(route, navigator) => { // 渲染场景，读取initialRouter传来的数据，确定显示哪些内容   用来渲染navigator栈顶的route里的component页面
+          // route={component: xxx, name: xxx, ...}， navigator.......route 用来在对应界面获取其他键值
+          return <route.component navigator={navigator} {...route} {...route.passProps}/>// {...route.passProps}即就是把passProps里的键值对全部以给属性赋值的方式展开 如：test={10}
+        }}/>)
     }
 
     return (
+      
       <View style={styles.content} needsOffscreenAlphaCompositing renderToHardwareTextureAndroid >
         {content}
         {this._welcome()}
@@ -142,7 +153,7 @@ class HomePage extends Component {
 
 var styles = StyleSheet.create({
   content: {
-    backgroundColor: '#434243',
+    backgroundColor: '#FFF',
     flex: 1
   },
   loadingText: {
@@ -166,4 +177,3 @@ var styles = StyleSheet.create({
 
 })
 
-module.exports = HomePage
