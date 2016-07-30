@@ -30,14 +30,18 @@ var Util = {
       body: JSON.stringify(data)
     };
     //fetch()它接收一个URL参数，返回一个promise来处理response。response参数带着一个Response对象。
+    console.log(url)
+    console.log(fetchOptions)
+    console.log(fetch(url, fetchOptions))
     fetch(url, fetchOptions)
-    .then((response) => response.text())//作为参数传入下一个then?
+    .then((response) => response.text())
     .then((responseText) => {
       callback(JSON.parse(responseText));
     });
   },
+  
   //Key
-  key: 'HSHHSGSGGSTWSYWSYUSUWSHWBS-REACT-NATIVE'//??????
+  key: 'LG'//没啥意义啊好像 
 
 };
 

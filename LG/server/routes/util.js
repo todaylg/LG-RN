@@ -27,7 +27,7 @@ module.exports = {
   },
 
   getKey: function(){
-    return 'HSHHSGSGGSTWSYWSYUSUWSHWBS-REACT-NATIVE';
+    return 'LG';
   }
 
 };
