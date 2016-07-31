@@ -84,7 +84,8 @@ export default class Login extends Component{
     // });
 
     var path = Service.host + Service.getMessage;
-    // var that = this;
+    var that = this;
+    console.log('...')
     Util.post(path, {
       key: Util.key
     }, function(data){
