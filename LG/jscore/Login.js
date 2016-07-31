@@ -47,28 +47,28 @@ export default class Login extends Component{
   componentDidMount(){
     var that = this;
     //是否登录过了来判断是否显示登录页面
-    // AsyncStorage.getItem('token', function(err, token){
-    //   if(!err && token){
-    //     var path = Service.host + Service.loginByToken;
-    //     Util.post(path, {
-    //       token: token
-    //     },function(data){
-    //       if(data.status){
-    //         that.setState({
-    //           showLogin: {
-    //             height:0,
-    //             width:0,
-    //             flex:0,
-    //           },
-    //           showIndex:{
-    //             flex:1,
-    //             opacity:1
-    //           },
-    //           isLoadingShow: false
-    //         });
-    //       }
-    //     });
-    //   }else{
+    AsyncStorage.getItem('token', function(err, token){
+      if(!err && token){
+        var path = Service.host + Service.loginByToken;
+        Util.post(path, {
+          token: token
+        },function(data){
+          if(data.status){
+            that.setState({
+              showLogin: {
+                height:0,
+                width:0,
+                flex:0,
+              },
+              showIndex:{
+                flex:1,
+                opacity:1
+              },
+              isLoadingShow: false
+            });
+          }
+        });
+      }else{
         that.setState({
           showIndex: {
             height:0,
@@ -80,8 +80,8 @@ export default class Login extends Component{
           },
           isLoadingShow: false
         });
-      // }
-    // });
+      }
+    });
 
     var path = Service.host + Service.getMessage;
     var that = this;
@@ -124,28 +124,27 @@ export default class Login extends Component{
       />;
   }
 
-  _getEmail(val){
+  _getEmail=(val)=>{
     var email = val;
     this.setState({
       email: email
     });
   }
 
-  _getPassword(val){
+  _getPassword=(val)=>{
     var password = val;
     this.setState({
       password: password
     });
   }
 
-  _login(){
+  _login=()=>{
     var email = this.state.email;
     var password = this.state.password;
     var path = Service.host + Service.login;
-    var that = this;
 
     //隐藏登录页 & 加载loading
-    that.setState({
+    this.setState({
       showLogin: {
         height:0,
         width:0,
@@ -159,7 +158,7 @@ export default class Login extends Component{
         Util.post(path, {
           email: email,
           password: password,
-          deviceId: deviceId,
+          deviceId: deviceId,//切换手机时才能识别？
         }, function(data){
           if(data.status){
             var user = data.data;
