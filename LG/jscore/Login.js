@@ -5,8 +5,8 @@ import Home from '../views/home'
 import About from '../views/about.js'
 import Manager from '../views/manager'
 import Message from '../views/message'
-import Util  from '../views/util'//发送请求
 import Service from '../views/service'//定义路由
+import Util  from '../views/util'//发送请求
 
 import {
   StyleSheet,
@@ -47,28 +47,28 @@ export default class Login extends Component{
   componentDidMount(){
     var that = this;
     //是否登录过了来判断是否显示登录页面
-    AsyncStorage.getItem('token', function(err, token){
-      if(!err && token){
-        var path = Service.host + Service.loginByToken;
-        Util.post(path, {
-          token: token
-        },function(data){
-          if(data.status){
-            that.setState({
-              showLogin: {
-                height:0,
-                width:0,
-                flex:0,
-              },
-              showIndex:{
-                flex:1,
-                opacity:1
-              },
-              isLoadingShow: false
-            });
-          }
-        });
-      }else{
+    // AsyncStorage.getItem('token', function(err, token){
+    //   if(!err && token){
+    //     var path = Service.host + Service.loginByToken;
+    //     Util.post(path, {
+    //       token: token
+    //     },function(data){
+    //       if(data.status){
+    //         that.setState({
+    //           showLogin: {
+    //             height:0,
+    //             width:0,
+    //             flex:0,
+    //           },
+    //           showIndex:{
+    //             flex:1,
+    //             opacity:1
+    //           },
+    //           isLoadingShow: false
+    //         });
+    //       }
+    //     });
+    //   }else{
         that.setState({
           showIndex: {
             height:0,
@@ -80,11 +80,11 @@ export default class Login extends Component{
           },
           isLoadingShow: false
         });
-      }
-    });
+      // }
+    // });
 
     var path = Service.host + Service.getMessage;
-    var that = this;
+    // var that = this;
     Util.post(path, {
       key: Util.key
     }, function(data){

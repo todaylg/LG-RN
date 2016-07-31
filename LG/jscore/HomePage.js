@@ -43,8 +43,7 @@ export default class HomePage extends Component{
       })
     ]).start(async() => {//start支持回调 
       this.setState({
-        isPlaying: false,
-        isLoading: false//还没有读数据这一个步骤
+        isPlaying: false
       })
 
       setTimeout(() => this._hideWelcome(), 0)
@@ -80,7 +79,7 @@ export default class HomePage extends Component{
         }}
         renderScene={(route, navigator) => { // 渲染场景，读取initialRouter传来的数据，确定显示哪些内容   用来渲染navigator栈顶的route里的component页面
           // route={component: xxx, name: xxx, ...}， navigator.......route 用来在对应界面获取其他键值
-          return <route.component navigator={navigator} {...route} {...route.passProps}/>// {...route.passProps}即就是把passProps里的键值对全部以给属性赋值的方式展开 如：test={10}
+          return <route.component/>// {...route.passProps}即就是把passProps里的键值对全部以给属性赋值的方式展开 如：test={10}
         }}/>)
     }
 
