@@ -10,7 +10,7 @@ import {
   StyleSheet,
   Navigator
 } from 'react-native';
-import HomePage from './jscore/HomePage.js';
+import HomePage from './jscore/HomePage_Test.js';
 
 class LG extends Component {
   constructor(props) {
