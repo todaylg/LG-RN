@@ -19,7 +19,7 @@ import {
   TextInput,
   ScrollView,
   TouchableHighlight,
-  ActivityIndicatorIOS,
+  ActivityIndicator,
   AlertIOS,//启动一个提示对话框，包含对应的标题和信息。
   AsyncStorage,//AsyncStorage是一个简单的、异步的、持久化的Key-Value存储系统，它对于App来说是全局性的。它用来代替LocalStorage。
 } from 'react-native'
@@ -47,28 +47,28 @@ export default class Login extends Component{
   componentDidMount(){
     var that = this;
     //是否登录过了来判断是否显示登录页面
-    AsyncStorage.getItem('token', function(err, token){
-      if(!err && token){
-        var path = Service.host + Service.loginByToken;
-        Util.post(path, {
-          token: token
-        },function(data){
-          if(data.status){
-            that.setState({
-              showLogin: {
-                height:0,
-                width:0,
-                flex:0,
-              },
-              showIndex:{
-                flex:1,
-                opacity:1
-              },
-              isLoadingShow: false
-            });
-          }
-        });
-      }else{
+    // AsyncStorage.getItem('token', function(err, token){
+    //   if(!err && token){
+    //     var path = Service.host + Service.loginByToken;
+    //     Util.post(path, {
+    //       token: token
+    //     },function(data){
+    //       if(data.status){
+    //         that.setState({
+    //           showLogin: {
+    //             height:0,
+    //             width:0,
+    //             flex:0,
+    //           },
+    //           showIndex:{
+    //             flex:1,
+    //             opacity:1
+    //           },
+    //           isLoadingShow: false
+    //         });
+    //       }
+    //     });
+    //   }else{
         that.setState({
           showIndex: {
             height:0,
@@ -80,8 +80,8 @@ export default class Login extends Component{
           },
           isLoadingShow: false
         });
-      }
-    });
+    //   }
+    // });
 
     var path = Service.host + Service.getMessage;
     var that = this;
@@ -138,11 +138,10 @@ export default class Login extends Component{
     });
   }
 
-  _login=()=>{
+  _login=()=>{  
     var email = this.state.email;
     var password = this.state.password;
     var path = Service.host + Service.login;
-
     //隐藏登录页 & 加载loading
     this.setState({
       showLogin: {
@@ -217,7 +216,7 @@ export default class Login extends Component{
       <View style={{flex:1}}>
         {this.state.isLoadingShow ?
           <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-            <ActivityIndicatorIOS size="small" color="#268DFF"></ActivityIndicatorIOS>
+            <ActivityIndicator size="small" color="#268DFF"></ActivityIndicator>
           </View>:null
         }
         {!this.state.isLoadingShow ?
