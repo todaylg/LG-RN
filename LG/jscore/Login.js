@@ -47,28 +47,28 @@ export default class Login extends Component{
   componentDidMount(){
     var that = this;
     //是否登录过了来判断是否显示登录页面
-    // AsyncStorage.getItem('token', function(err, token){
-    //   if(!err && token){
-    //     var path = Service.host + Service.loginByToken;
-    //     Util.post(path, {
-    //       token: token
-    //     },function(data){
-    //       if(data.status){
-    //         that.setState({
-    //           showLogin: {
-    //             height:0,
-    //             width:0,
-    //             flex:0,
-    //           },
-    //           showIndex:{
-    //             flex:1,
-    //             opacity:1
-    //           },
-    //           isLoadingShow: false
-    //         });
-    //       }
-    //     });
-    //   }else{
+    AsyncStorage.getItem('token', function(err, token){
+      if(!err && token){
+        var path = Service.host + Service.loginByToken;
+        Util.post(path, {
+          token: token
+        },function(data){
+          if(data.status){
+            that.setState({
+              showLogin: {
+                height:0,
+                width:0,
+                flex:0,
+              },
+              showIndex:{
+                flex:1,
+                opacity:1
+              },
+              isLoadingShow: false
+            });
+          }
+        });
+      }else{
         that.setState({
           showIndex: {
             height:0,
@@ -80,8 +80,8 @@ export default class Login extends Component{
           },
           isLoadingShow: false
         });
-    //   }
-    // });
+      }
+    });
 
     var path = Service.host + Service.getMessage;
     var that = this;
@@ -173,7 +173,7 @@ export default class Login extends Component{
               ['tag', user.tag],
             ], function(err){
               if(!err){
-                that.setState({
+                that.setState({//触发的重绘好像是全部的
                   showLogin: {
                     height:0,
                     width:0,
@@ -187,7 +187,6 @@ export default class Login extends Component{
                 });
               }
             });
-
           }else{
             AlertIOS.alert('登录', '用户名或者密码错误');
             that.setState({
