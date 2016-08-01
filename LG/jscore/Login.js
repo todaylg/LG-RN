@@ -142,6 +142,7 @@ export default class Login extends Component{
     var email = this.state.email;
     var password = this.state.password;
     var path = Service.host + Service.login;
+    var that = this;
     //隐藏登录页 & 加载loading
     this.setState({
       showLogin: {
