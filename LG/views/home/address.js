@@ -82,7 +82,12 @@ export default class Address extends Component{
       Linking.openURL('mailto://' + email);
     });
 
-
+//在iOS设备上显示一个ActionSheet弹出框，其中options参数为一个对象，其属性必须包含以下一项或多项：
+//options（字符串数组） - 一组按钮的标题（必选）
+//cancelButtonIndex（整型） - 选项中取消按钮所在的位置（索引）
+//destructiveButtonIndex（整型） - 选项中删除按钮所在的位置（索引）
+//title（字符串） - 弹出框顶部的标题
+//message（字符串） - 弹出框顶部标题下方的信息
     ActionSheetIOS.showActionSheetWithOptions({
         options: options,
         cancelButtonIndex: options.length - 1 ,

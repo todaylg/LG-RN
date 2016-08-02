@@ -11,7 +11,9 @@ import webview from'./about/webview'
 
 
 export default class About extends Component{
-
+  constructor (props) {
+    super(props)
+  }
   render(){
     return (
       <ScrollView style={styles.container}>
