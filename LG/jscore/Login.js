@@ -26,8 +26,8 @@ import {
 
 
 export default class Login extends Component{
-  constructor (...args) {
-    super(...args)
+  constructor (props) {
+    super(props)
     this.state = ({
       title: '主页',
       description: '选项卡',
@@ -101,7 +101,7 @@ export default class Login extends Component{
     });
   }
 
-  _addNavigator(component, title){
+  _addNavigator=(component, title)=>{
     var data = null;
     if(title === '公告'){
       data = this.state.data;
@@ -121,7 +121,7 @@ export default class Login extends Component{
             data: data
           }
         }}
-      />;
+        />;
   }
 
   _getEmail=(val)=>{
@@ -223,7 +223,7 @@ export default class Login extends Component{
           <View style={this.state.showIndex}>
             <TabBarIOS barTintColor="#FFF">
               <TabBarIOS.Item
-                icon={require('image!phone_s')}//?????
+                icon={require('image!phone_s')}
                 title="首页"
                 selected={this.state.selectedTab === 'home'}
                 onPress={this._selectTab.bind(this, 'home')}
@@ -267,7 +267,7 @@ export default class Login extends Component{
             </View>
 
             <View style={styles.inputRow}>
-              <Text>邮箱</Text><TextInput style={styles.input} placeholder="请输入邮箱" onChangeText={this._getEmail}/>
+              <Text>账号</Text><TextInput style={styles.input} placeholder="请输入账号" onChangeText={this._getEmail}/>
             </View>
             <View style={styles.inputRow}>
               <Text>密码</Text><TextInput style={styles.input} placeholder="请输入密码" password={true} onChangeText={this._getPassword}/>

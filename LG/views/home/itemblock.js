@@ -19,7 +19,7 @@ export default class ItemBlock extends Component{
       backgroundColor: this.props.color,
     };
     return (
-      <TouchableHighlight underlayColor="#fff" onPress={this._loadPage}>
+      <TouchableHighlight underlayColor="#fff" onPress={this._loadPage.bind(this)}>
         <View style={[styles.itemBlock, size]}>
           <View>
             <Text style={styles.font18}>{this.props.title}</Text>

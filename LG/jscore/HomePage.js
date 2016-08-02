@@ -10,11 +10,11 @@ import {
  StyleSheet 
 } from 'react-native'
 import Login from './Login.js';
-// import Login from '../views/login.js';
+// import Login from '../views/login.js';//测试用
 
 export default class HomePage extends Component{
-  constructor (...args) {
-    super(...args)
+  constructor (props) {
+    super(props)
     this.state = ({
       isError: false,
       isLoading: true,

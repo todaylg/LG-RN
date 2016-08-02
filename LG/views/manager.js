@@ -15,10 +15,12 @@ import PostMessage from './manager/postMessage'
 
 
 export default class Manager extends Component{
-
+  constructor (props) {
+    super(props)
+  }
   render(){
     var colors = ['#F4000B', '#17B4FF', '#FFD900', '#F00000'];
-    var tags = ['U', 'A', 'D', 'M'];
+    var tags = ['P', 'A', 'D', 'M'];
     var items = ['修改密码', '增加联系人', '删除联系人',  '发布公告'];
     var components = [ModifyPassword, AddUser, DeleteUser, PostMessage];
     var JSXDOM = [];
@@ -52,16 +54,28 @@ export default class Manager extends Component{
     );
   }
 
-  _loadPage(component, title){
+  _loadPage=(component, title)=>{
     this.props.navigator.push({
       title: title,
       component: component
     });
   }
 
-  _clear(){
-    this.props.navigator.pop();
-    AsyncStorage.clear();
+  _clear=()=>{
+    //TODO
+    // this.setState({
+    //       showIndex: {
+    //         height:0,
+    //         opacity:0
+    //       },
+    //       showLogin:{
+    //         flex:1,
+    //         opacity:1
+    //       },
+    //       isLoadingShow: false
+    //     });
+    this.props.navigator.pop();//这里有bug，回不到登录的页面，因为没有上一页
+    AsyncStorage.clear();//大哥。。这是直接清除全部啊，不能实现记录多个密码的功能，以后添加相应的功能时这里要进行更改
   }
 
 }

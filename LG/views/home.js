@@ -11,46 +11,46 @@ import ItemBlock from './home/itemblock'
 
 
 export default class Home extends Component{
-  constructor (...args) {
-    super(...args)
+  constructor (props) {
+    super(props)
     this.state = ({
     //减去paddingLeft && paddingRight && space
     width: Math.floor(((Util.size.width - 20) - 50) / 4),
     items: [
       {
         id:1,
-        title: '研发',
-        partment: '框架研发',
+        title: '蓝色',
+        partment: '126AFF',
         color: '#126AFF',
       },
       {
         id:2,
-        title: '研发',
-        partment: 'BU研发',
+        title: '黄色',
+        partment: 'FFD600',
         color: '#FFD600',
       },
       {
         id:3,
-        title: '产品',
-        partment: '公共产品',
+        title: '红色',
+        partment: 'F80728',
         color: '#F80728',
       },
       {
         id:4,
-        title: '产品',
-        partment: 'BU产品',
+        title: '绿色',
+        partment: '05C147',
         color: '#05C147',
       },
       {
         id:5,
-        title: '产品',
-        partment: '启明星',
+        title: '粉色',
+        partment: 'FF4EB9',
         color: '#FF4EB9',
       },
       {
         id:6,
-        title: '项目',
-        partment: '项目管理',
+        title: '橙色',
+        partment: 'EE810D',
         color: '#EE810D',
       }
     ]
@@ -61,7 +61,6 @@ export default class Home extends Component{
     var Items1 = [];
     var Items2 = [];
     var items = this.state.items;
-
     for(var i = 0; i < 4; i++){
       Items1.push(
         <ItemBlock
@@ -74,7 +73,7 @@ export default class Home extends Component{
           />
       );
     }
-
+    //一排四个
     for(var i = 4; i < items.length; i++){
       Items2.push(
         <ItemBlock

@@ -14,13 +14,11 @@ import Service from './../service'
 
 
 export default class AddUser extends Component{
-
-  getInitialState(){
-    var items = ['A', 'B', 'C', 'D', 'E', 'F'];
-    var tags = ['框架研发', 'BU产品', 'BU研发', '启明星', '项目管理', '公共产品'];
-    return {
-      items: items,
-      tags: tags,
+  constructor (props) {
+    super(props)
+    this.state = ({
+      items: ['A', 'B', 'C', 'D', 'E', 'F'],
+      tags: ['框架研发', 'BU产品', 'BU研发', '启明星', '项目管理', '公共产品'],
       selectA:{
         backgroundColor:'#3BC1FF',
         borderColor:'#3BC1FF'
@@ -37,9 +35,9 @@ export default class AddUser extends Component{
       },
       tag:'研发',
       partment: '框架研发'
-    };
+    })
   }
-
+  
   render(){
     var tagOne = [];
     for(var i = 0; i <3; i++){

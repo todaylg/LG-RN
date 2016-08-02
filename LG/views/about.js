@@ -36,7 +36,7 @@ export default class About extends Component{
     );
   }
 
-  _openWebView(url){
+  _openWebView=(url)=>{
     this.props.navigator.push({
       title:'项目地址',
       component: webview,

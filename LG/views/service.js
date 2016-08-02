@@ -1,7 +1,7 @@
 //TODO
 //ES6
 var Service = {
-  host:'http://127.0.0.1:3000',
+  host:'http://192.168.1.103:3000',
   login: '/user/login',
   loginByToken: '/user/login/token',
   getUser: '/user/get',
