@@ -41,7 +41,7 @@ var Util = {
   },
   
   //Key
-  key: 'LG'//没啥意义啊好像 
+  key: 'LG'
 
 };
 

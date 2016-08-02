@@ -117,6 +117,7 @@ var User = {
         console.log(content[i]);
         fs.writeFileSync(USER_PATH, JSON.stringify(content));
         //删除密码
+        //为什么要删除密码呢？不给客户端留密码？
         delete content[i].password;
         return res.send({
           status: 1,
@@ -133,7 +134,7 @@ var User = {
 
   //通过token登录
   loginByToken: function(req, res){
-    var token = req.param('token');
+    var token = req.param('token');//token就等于密码了
     var content = JSON.parse(fs.readFileSync(USER_PATH));
 
     for(var i in content){
@@ -154,28 +155,10 @@ var User = {
 
   //用户修改密码
   updatePassword: function(req, res){
-    var token = req.param('token');
-    var oldPassword = util.md5(req.param('oldPassword'));
-    var password = util.md5(req.param('password'));
-
-    var content = JSON.parse(fs.readFileSync(USER_PATH));
-    for(var i in content){
-      if(token === content[i].token && oldPassword === content[i].password){
-        content[i].password = password;
-        //写入到文件中
-        fs.writeFileSync(USER_PATH, JSON.stringify(content));
-        return res.send({
-          status: 1,
-          data: '更新成功'
-        });
-      }
-    }
-
-    return res.send({
-      status: 0,
-      data: '更新失败，没有找到该用户或者初始密码错误'
-    });
-  },
+    //为毛nodejs会请求了两次？？？日了狗了
+    console.log('updatePassword被执行，请求为：'+req.url);
+    
+},
 
   //删除用户
   deleteUser: function(req, res) {

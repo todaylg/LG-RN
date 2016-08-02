@@ -28,7 +28,7 @@ export default class ModifyUser extends Component{
         </View>
 
         <View>
-          <TouchableOpacity onPress={this._resetPassword}>
+          <TouchableOpacity onPress={this._resetPassword.bind(this)}>
             <View style={styles.btn}>
               <Text style={{color:'#FFF'}}>修改密码</Text>
             </View>
@@ -50,10 +50,9 @@ export default class ModifyUser extends Component{
     });
   }
 
-  _resetPassword=()=>{
+  _resetPassword(){
     var path = Service.host + Service.updatePassword;
     var that = this;
-    console.log(that.state.password);
     //需要服务端确认login token
     AsyncStorage.getItem('token', function(err, data){
       if(!err){
