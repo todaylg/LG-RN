@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Image,
   TouchableHighlight,
-  LinkingIOS,
+  Linking,
   AlertIOS
 } from 'react-native'
 
@@ -64,7 +64,7 @@ export default class Address extends Component{
     );
   }
 
-  showActionSheet(tel, email, name) {
+  showActionSheet=(tel, email, name)=> {
     var options = [];
     options.push('拨打电话给：' + name);
     options.push('发送短信给：' + name);
@@ -73,13 +73,13 @@ export default class Address extends Component{
 
     var events = [];
     events.push(function(){
-      LinkingIOS.openURL('tel://' + tel);
+      Linking.openURL('tel://' + tel);
     });
     events.push(function(){
-      LinkingIOS.openURL('sms://' + tel);
+      Linking.openURL('sms://' + tel);
     });
     events.push(function(){
-      LinkingIOS.openURL('mailto://' + email);
+      Linking.openURL('mailto://' + email);
     });
 
 
