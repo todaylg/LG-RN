@@ -43,7 +43,7 @@ export default class ItemBlock extends Component{
       partment : partment
     }, function(data){
       nav.push({
-        title: this.props.tag,
+        title: this.props.title,
         component: Address,
         passProps:{
           data: data

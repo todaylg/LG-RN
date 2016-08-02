@@ -38,19 +38,19 @@ export default class ModifyUser extends Component{
     );
   }
 
-  _getOldPassword(val){
+  _getOldPassword=(val)=>{
     this.setState({
       oldPassword: val
     });
   }
 
-  _getNewPassword(val){
+  _getNewPassword=(val)=>{
     this.setState({
       password: val
     });
   }
 
-  _resetPassword(){
+  _resetPassword=()=>{
     var path = Service.host + Service.updatePassword;
     var that = this;
     console.log(that.state.password);

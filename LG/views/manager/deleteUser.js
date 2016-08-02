@@ -14,11 +14,13 @@ import Service from '../service'
 
 
 export default class DeleteUser extends Component{
-  getInitialState() {
-    return {
-      email: ''
-    }
+  constructor (props) {
+    super(props)
+    this.state = ({
+       email: ''
+    })
   }
+  
   render(){
     return (
       <ScrollView>
@@ -38,13 +40,13 @@ export default class DeleteUser extends Component{
     );
   }
 
-  _getEmail(val){
+  _getEmail=(val)=>{
     this.setState({
       email: val
     });
   }
 
-  _deleteUser(){
+  _deleteUser=()=>{
     var that = this;
     this.state.email == '' ?
       AlertIOS.alert('提示', '请输入要删除的用户邮箱') :

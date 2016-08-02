@@ -14,10 +14,10 @@ import Util from './../util'
 
 
 export default class PostMessage extends Component{
-
   render(){
     return (
       <ScrollView >
+      <View>
         <View>
           <TextInput multiline={true}
                      onChangeText={this._onChange}
@@ -31,11 +31,12 @@ export default class PostMessage extends Component{
             </View>
           </TouchableOpacity>
         </View>
+        </View>
       </ScrollView>
     );
   }
 
-  _onChange(val){
+  _onChange=(val)=>{
     if(val){
       this.setState({
         message: val
@@ -43,7 +44,7 @@ export default class PostMessage extends Component{
     }
   }
 
-  _postMessage(){
+  _postMessage=()=>{
     var that = this;
     AsyncStorage.getItem('token', function(err, token){
       if(err){
@@ -90,5 +91,3 @@ var styles = StyleSheet.create({
     borderRadius:4,
   }
 });
-
-module.exports = PostMessage;

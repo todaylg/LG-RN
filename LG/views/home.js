@@ -20,37 +20,37 @@ export default class Home extends Component{
       {
         id:1,
         title: '蓝色',
-        partment: '126AFF',
+        partment: '框架研发',
         color: '#126AFF',
       },
       {
         id:2,
         title: '黄色',
-        partment: 'FFD600',
+        partment: 'BU产品',
         color: '#FFD600',
       },
       {
         id:3,
         title: '红色',
-        partment: 'F80728',
+        partment: 'BU研发',
         color: '#F80728',
       },
       {
         id:4,
         title: '绿色',
-        partment: '05C147',
+        partment: '启明星',
         color: '#05C147',
       },
       {
         id:5,
         title: '粉色',
-        partment: 'FF4EB9',
+        partment: '项目管理',
         color: '#FF4EB9',
       },
       {
         id:6,
         title: '橙色',
-        partment: 'EE810D',
+        partment: '公共产品',
         color: '#EE810D',
       }
     ]
