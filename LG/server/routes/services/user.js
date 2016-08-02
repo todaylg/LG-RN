@@ -157,7 +157,28 @@ var User = {
   updatePassword: function(req, res){
     //为毛nodejs会请求了两次？？？日了狗了
     console.log('updatePassword被执行，请求为：'+req.url);
-    
+    var token = req.param('token');
+    var oldPassword = util.md5(req.param('oldPassword'));
+    var password = util.md5(req.param('password'));
+    var content = JSON.parse(fs.readFileSync(USER_PATH));
+    for(var i in content){
+      if(token === content[i].token && oldPassword === content[i].password){
+        content[i].password = password;
+        //写入到文件中
+        fs.writeFileSync(USER_PATH, JSON.stringify(content));
+        console.log("i="+i);
+        console.log("内层的return")
+        return res.send({
+          status: 1,
+          data: '更新成功'
+        });
+      }
+    }
+    console.log("外层的return")
+    return res.send({
+      status: 0,
+      data: '更新失败，没有找到该用户或者初始密码错误'
+    });
 },
 
   //删除用户
