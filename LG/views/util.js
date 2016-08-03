@@ -32,9 +32,8 @@ var Util = {
     //fetch()它接收一个URL参数，返回一个promise来处理response。response参数带着一个Response对象。
     console.log(url)
     console.log(fetchOptions)
-    console.log(fetch(url, fetchOptions))
     fetch(url, fetchOptions)
-    .then((response) => response.text())
+    .then((response) => response.text())//....
     .then((responseText) => {
       callback(JSON.parse(responseText));
     });

@@ -51,7 +51,7 @@ async.waterfall([//与seires相似，按顺序依次执行多个函数。不同�
     routes(app);
     callback(null);//66666
   },
-  function(){
+  function(){//
     app.use(function(req, res, next) {
       var err = new Error('Not Found');
       err.status = 404;
