@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html style="width: 100%;height:100%;">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!--360极速模式-->
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no" searchtype="map">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="apple-mobile-web-app-title" content="地图">
+	<!--<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />-->
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,minimal-ui">
+	<meta name="misapplication-tap-highlight" content="no" />
+	<!-- uc强制竖屏 -->
+	<meta name="screen-orientation" content="portrait">
+	<!-- QQ强制竖屏 -->
+	<meta name="x5-orientation" content="portrait">
+	<!-- UC强制全屏 -->
+	<meta name="full-screen" content="yes">
+	<!-- QQ强制全屏 -->
+	<meta name="x5-fullscreen" content="true">
+	<!-- UC应用模式 -->
+	<meta name="browsermode" content="application">
+	<!-- QQ应用模式 -->
+	<meta name="x5-page-mode" content="app">
+	<!-- windows phone 点击无高光 -->
+	<meta name="msapplication-tap-highlight" content="no">
+    <title>地图</title>
+</head>
+<body style="width: 100%;height:100%;padding:0;margin:0;">
+	<div id="map" style="width: 100%;height:100%;">
+		
+	</div>
+	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=6a1180467b5f36714645d22044535ab7"></script>
+	<script type="text/javascript">
+		var url = window.location.href;
+		var map = new AMap.Map('map',{
+			resizeEnable: true
+		});
+		map.setZoom(16);
+		var urlParams = url.split('?');
+		if(urlParams.length > 1){
+			var arr = urlParams[1].split('&');
+			var obj = {};
+			for(var i in arr){
+				var kv = arr[i].split('=');
+				obj[kv[0]] = kv[1];
+			}
+			
+			//地图居中
+			//http://127.0.0.1:8020/twst/index.html?pos=121.390686,31.213976
+			if(obj["pos"]){
+				var pos = obj["pos"].split(',');
+				map.setCenter(new AMap.LngLat(pos[0], pos[1]));
+			}
+			//添加marker
+			//http://127.0.0.1:8020/twst/index.html?pos=121.390686,31.213976&markers=121.390686,31.213976,121.390586,31.213976,121.350686,31.213976
+			if(obj["markers"]){
+				var marks = obj["markers"].split(',');
+				var mks = [];
+				for(var i = 0; i < marks.length; i++){
+					if(i % 2 === 0){
+						var marker = new AMap.Marker({
+							map: map,
+							position: new AMap.LngLat(marks[i], marks[i + 1])
+						});
+						mks.push(marker);
+					}
+				}
+				
+				map.setFitView(mks);
+			}	
+		}
+		
+	</script>
+</body>
+</html>
