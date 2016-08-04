@@ -90,8 +90,7 @@ export default class HomePage extends Component{
     return (
       <View style={styles.content} needsOffscreenAlphaCompositing renderToHardwareTextureAndroid >
         <StatusBar
-         backgroundColor="white"
-         barStyle="light-content"/>
+         barStyle="default"/>
         {content}
         {this._welcome()}
       </View>

@@ -14,6 +14,7 @@ import {
   View,
   TabBarIOS,
   Text,
+  StatusBar,
   NavigatorIOS,//NavigatorIOS包装了UIKit的导航功能，可以使用左划功能来返回到上一界面。
   AppRegistry,
   Image,
@@ -41,6 +42,7 @@ export default class Login extends Component{
         flex:1,
         opacity:1
       },
+      Logining:true,
       isLoadingShow: false
     })
   }
@@ -61,6 +63,7 @@ export default class Login extends Component{
                 width:0,
                 flex:0,
               },
+              Logining:false,
               showIndex:{
                 flex:1,
                 opacity:1
@@ -79,6 +82,7 @@ export default class Login extends Component{
             flex:1,
             opacity:1
           },
+          Logining:true,
           isLoadingShow: false
         });
       }
@@ -151,6 +155,7 @@ export default class Login extends Component{
         width:0,
         flex:0,
       },
+      Logining:false,
       isLoadingShow: true
     });
     //添加广告是什么鬼 
@@ -180,6 +185,7 @@ export default class Login extends Component{
                     width:0,
                     flex:0,
                   },
+                  Logining:false,
                   showIndex:{
                     flex:1,
                     opacity:1
@@ -195,6 +201,7 @@ export default class Login extends Component{
                 flex:1,
                 opacity:1
               },
+              Logining:true,
               showIndex:{
                 height:0,
                 width:0,
@@ -222,6 +229,8 @@ export default class Login extends Component{
         }
         {!this.state.isLoadingShow ?
           <View style={this.state.showIndex}>
+            <StatusBar
+           barStyle="light-content"/>
             <TabBarIOS 
               barTintColor="#FFF" 
               tintColor="#000">  
@@ -272,7 +281,10 @@ export default class Login extends Component{
             </TabBarIOS>
           </View> : null
         }
+        {this.state.Logining ?
         <ScrollView style={[this.state.showLogin]}>
+        <StatusBar
+        barStyle="default"/>
           <View style={styles.container}>
             <View>
               <Image style={styles.logo} source={require('image!logo')}></Image>
@@ -291,8 +303,8 @@ export default class Login extends Component{
               </TouchableHighlight>
             </View>
           </View>
-        </ScrollView>
-
+        </ScrollView>: null
+        }
       </View>
     );
   }
