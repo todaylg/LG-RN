@@ -58,11 +58,6 @@ export default class Login extends Component{
         },function(data){
           if(data.status){
             that.setState({
-              showLogin: {
-                height:0,
-                width:0,
-                flex:0,
-              },
               Logining:false,
               showIndex:{
                 flex:1,
@@ -150,11 +145,6 @@ export default class Login extends Component{
     var that = this;
     //隐藏登录页 & 加载loading
     this.setState({
-      showLogin: {
-        height:0,
-        width:0,
-        flex:0,
-      },
       Logining:false,
       isLoadingShow: true
     });
@@ -180,11 +170,6 @@ export default class Login extends Component{
             ], function(err){
               if(!err){
                 that.setState({//触发的重绘好像是全部的
-                  showLogin: {
-                    height:0,
-                    width:0,
-                    flex:0,
-                  },
                   Logining:false,
                   showIndex:{
                     flex:1,
@@ -283,8 +268,6 @@ export default class Login extends Component{
         }
         {this.state.Logining ?
         <ScrollView style={[this.state.showLogin]}>
-        <StatusBar
-        barStyle="default"/>
           <View style={styles.container}>
             <View>
               <Image style={styles.logo} source={require('image!logo')}></Image>
