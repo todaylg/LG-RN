@@ -42,7 +42,6 @@ export default class Login extends Component{
         flex:1,
         opacity:1
       },
-      Logining:true,
       isLoadingShow: false
     })
   }
@@ -58,7 +57,11 @@ export default class Login extends Component{
         },function(data){
           if(data.status){
             that.setState({
-              Logining:false,
+              showLogin: {
+                height:0,
+                width:0,
+                flex:0,
+              },
               showIndex:{
                 flex:1,
                 opacity:1
@@ -77,7 +80,6 @@ export default class Login extends Component{
             flex:1,
             opacity:1
           },
-          Logining:true,
           isLoadingShow: false
         });
       }
@@ -145,7 +147,11 @@ export default class Login extends Component{
     var that = this;
     //隐藏登录页 & 加载loading
     this.setState({
-      Logining:false,
+      showLogin: {
+        height:0,
+        width:0,
+        flex:0,
+      },
       isLoadingShow: true
     });
     //添加广告是什么鬼 
@@ -170,7 +176,11 @@ export default class Login extends Component{
             ], function(err){
               if(!err){
                 that.setState({//触发的重绘好像是全部的
-                  Logining:false,
+                  showLogin: {
+                    height:0,
+                    width:0,
+                    flex:0,
+                  },
                   showIndex:{
                     flex:1,
                     opacity:1
@@ -186,7 +196,6 @@ export default class Login extends Component{
                 flex:1,
                 opacity:1
               },
-              Logining:true,
               showIndex:{
                 height:0,
                 width:0,
@@ -204,6 +213,7 @@ export default class Login extends Component{
     });
   }
 //barTintColor标签栏的背景颜色  tintColor当前被选中的标签图标的颜色。
+  //主页需要预先加载，否则TabBarIos会有偏移，其实也可以再触发一次重绘应该也可以解决问题
   render(){
     return(
       <View style={{flex:1}}>
@@ -266,7 +276,6 @@ export default class Login extends Component{
             </TabBarIOS>
           </View> : null
         }
-        {this.state.Logining ?
         <ScrollView style={[this.state.showLogin]}>
           <View style={styles.container}>
             <View>
@@ -286,8 +295,8 @@ export default class Login extends Component{
               </TouchableHighlight>
             </View>
           </View>
-        </ScrollView>: null
-        }
+        </ScrollView>
+
       </View>
     );
   }
