@@ -68,7 +68,7 @@ var styles = StyleSheet.create({
     marginLeft:10,
     alignItems:'center',
     justifyContent:'center',
-    backgroundColor: '#05C147',
+    backgroundColor: '#000',
     marginRight:10,
   },
   text:{

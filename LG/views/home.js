@@ -19,9 +19,9 @@ export default class Home extends Component{
     items: [
       {
         id:1,
-        title: '蓝色',
+        title: '黑色',
         partment: '框架研发',
-        color: '#126AFF',
+        color: '#000',
       },
       {
         id:2,

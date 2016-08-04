@@ -7,6 +7,7 @@ import Manager from '../views/manager'
 import Message from '../views/message'
 import Service from '../views/service'//定义路由
 import Util  from '../views/util'//发送请求
+import Map from '../views/map.js';//添加地图模块
 
 import {
   StyleSheet,
@@ -108,10 +109,10 @@ export default class Login extends Component{
     }
     return <NavigatorIOS
       style={{flex:1}}
-      barTintColor='#007AFF'//导航条的背景颜色。
+      barTintColor='#000'//导航条的背景颜色。
       titleTextColor="#fff"//导航器标题的文字颜色。
       tintColor="#fff"//导航栏上按钮的颜色。
-      translucent={false}//一个布尔值，决定是否导航条是半透明的。
+      translucent={true}//一个布尔值，决定是否导航条是半透明的。
       initialRoute={{
       //NavigatorIOS的第一个路由通过initialRoute属性来提供。
       //现在component会被导航器渲染出来。它可以通过route属性获得对应的路由对象，导航器本身，还有所有passProps中传递的属性。 查看initialRoute的propTypes来了解路由（route）的完整定义
@@ -210,25 +211,36 @@ export default class Login extends Component{
       AlertIOS.alert('设置','无法获取设备唯一标识，请关闭设置->隐私->广告->限制广告跟踪');
     });
   }
-
+//barTintColor标签栏的背景颜色  tintColor当前被选中的标签图标的颜色。
   render(){
     return(
       <View style={{flex:1}}>
         {this.state.isLoadingShow ?
           <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-            <ActivityIndicator size="small" color="#268DFF"></ActivityIndicator>
+            <ActivityIndicator size="small" color="#000"></ActivityIndicator>
           </View>:null
         }
         {!this.state.isLoadingShow ?
           <View style={this.state.showIndex}>
-            <TabBarIOS barTintColor="#FFF">
+            <TabBarIOS 
+              barTintColor="#FFF" 
+              tintColor="#000">  
               <TabBarIOS.Item
-                icon={require('image!phone_s')}
+                icon={require('image!home')}
                 title="首页"
                 selected={this.state.selectedTab === 'home'}
                 onPress={this._selectTab.bind(this, 'home')}
                 >
                 {this._addNavigator(Home, '主页')}
+              </TabBarIOS.Item>
+
+              <TabBarIOS.Item
+                icon={require('image!map')}
+                title="地图"
+                selected={this.state.selectedTab === 'map'}
+                onPress={this._selectTab.bind(this, 'map')}
+                >
+                {this._addNavigator(Map, '地图')}
               </TabBarIOS.Item>
 
               <TabBarIOS.Item

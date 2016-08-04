@@ -20,7 +20,7 @@ export default class Address extends Component{
   render(){
     var view = [];
     var items = this.props.data.status? this.props.data.data: [];
-    var colors = ['#E20079', '#FFD602', '#25BFFE', '#F90000', '#04E246', '#04E246', '#00AFC9'];
+    var colors = ['#E20079', '#FFD602', '#000', '#F90000', '#04E246', '#04E246', '#00AFC9'];
     var color = {
       backgroundColor: colors[parseInt(Math.random()*7)]
     };
