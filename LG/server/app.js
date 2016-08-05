@@ -51,11 +51,11 @@ async.waterfall([//与seires相似，按顺序依次执行多个函数。不同�
     routes(app);
     callback(null);//66666
   },
-  function(){//
-    app.use(function(req, res, next) {
+  function(){
+    app.use(function(req, res, next) {//错误处理中间件定义
       var err = new Error('Not Found');
       err.status = 404;
-      next(err);
+      next(err);//传给后面判断是否显示具体的报错信息
     });
 
     if (app.get('env') === 'development') {
