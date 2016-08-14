@@ -139,7 +139,12 @@ export default class Login extends Component{
       password: password
     });
   }
-
+  _regist=()=>{
+    AlertIOS.alert('用户注册', '还没整呢');
+  }
+  _findpsw=()=>{
+    AlertIOS.alert('找回密码', '也还没整呢');
+  }
   _login=()=>{  
     var email = this.state.email;
     var password = this.state.password;
@@ -154,7 +159,7 @@ export default class Login extends Component{
       },
       isLoadingShow: true
     });
-    //添加广告是什么鬼 
+    //读取deviceId
     AdSupportIOS.getAdvertisingTrackingEnabled(function(){
       AdSupportIOS.getAdvertisingId(function(deviceId){
         Util.post(path, {
@@ -288,10 +293,17 @@ export default class Login extends Component{
             <View style={styles.inputRow}>
               <Text>密码</Text><TextInput style={styles.input} placeholder="请输入密码" password={true} onChangeText={this._getPassword}/>
             </View>
-
             <View>
-              <TouchableHighlight underlayColor="#fff" style={styles.btn} onPress={this._login}>
-                <Text style={{color:'#fff'}}>登录</Text>
+              <TouchableHighlight underlayColor="#fff" style={styles.loginBtn} onPress={this._login}>
+                <Text style={{ fontSize:18,color:'#fff'}}>登录</Text>
+              </TouchableHighlight>
+            </View>
+            <View style={styles.inputRow}>
+              <TouchableHighlight underlayColor="#fff" style={styles.registBtn} onPress={this._regist}>
+                <Text style={{fontSize:16,color:'#fff'}}>用户注册</Text>
+              </TouchableHighlight>
+              <TouchableHighlight underlayColor="#fff" style={styles.findpswBtn} onPress={this._findpsw}>
+                <Text style={{fontSize:16,color:'#fff'}}>找回密码</Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -311,6 +323,7 @@ var styles = StyleSheet.create({
   logo:{
     width:100,
     height:100,
+    marginBottom:20,
     resizeMode: Image.resizeMode.contain
   },
   inputRow:{
@@ -321,20 +334,40 @@ var styles = StyleSheet.create({
   },
   input:{
     marginLeft:10,
-    width:220,
+    width:200,
     borderWidth:Util.pixel,
     height:35,
     paddingLeft:8,
     borderRadius:5,
     borderColor:'#ccc'
   },
-  btn:{
+  loginBtn:{
     marginTop:10,
-    width:80,
-    height:35,
-    backgroundColor:'#3BC1FF',
+    width:260,
+    height:40,
+    backgroundColor:'#74c543',
     justifyContent:'center',
     alignItems:'center',
+    borderRadius: 4,
+  },
+  registBtn:{
+    marginTop:10,
+    marginRight:30,
+    width:100,
+    height:35,
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:'#3eade9',
+    borderRadius: 4,
+  },
+  findpswBtn:{
+    marginTop:10,
+    marginLeft:30,
+    width:100,
+    height:35,
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:'#d92834',
     borderRadius: 4,
   }
 });
